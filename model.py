@@ -1,64 +1,48 @@
-class Movie:
-
-    def __init__(self, name, year, duration):
-        self.__name = name.title()
-        self.__year = year
-        self.__duration = duration
-        self.__likes = 0
+class Program:
+    def __init__(self, name, year):
+        self._name = name.title()
+        self._year = year
+        self._likes = 0
 
     @property
     def name(self):
-        return self.__name.title()
+        return self._name.title()
 
     @name.setter
     def name(self, value):
-        self.__name = value.title()
+        self._name = value.title()
 
     @property
     def year(self):
-        return self.__year
+        return self._year
+
+    @property
+    def likes(self):
+        return self._likes
+
+    def like(self):
+        self._likes += 1
+
+
+class Movie(Program):
+
+    def __init__(self, duration, name, year):
+        super().__init__(name=name, year=year)
+        self.__duration = duration
 
     @property
     def duration(self):
         return self.__duration
 
-    @property
-    def likes(self):
-        return self.__likes
 
-    def like(self):
-        self.__likes += 1
-
-
-class Series:
-    def __init__(self, name, year, seasons):
-        self.__name = name.title()
-        self.__year = year
+class Series(Program):
+    def __init__(self, seasons, name, year):
+        super().__init__(name=name, year=year)
         self.__seasons = seasons
-        self.__likes = 0
-
-    @property
-    def name(self):
-        return self.__name.title()
-
-    @name.setter
-    def name(self, value):
-        self.__name = value.title()
-
-    @property
-    def year(self):
-        return self.__year
 
     @property
     def seasons(self):
         return self.__seasons
-
-    @property
-    def likes(self):
-        return self.__likes
-
-    def like(self):
-        self.__likes += 1
 
 
 avengers = Movie(name="avengers teste", year=2018, duration=160)
