@@ -23,6 +23,12 @@ class Program:
     def like(self):
         self._likes += 1
 
+    def __str__(self):
+        return f"{self._name} - {self.year} - {self.likes} Likes"
+
+    def __repr__(self):
+        return f"Program(_name='{self._name}', year='{self.year}', likes='{self.likes}')"
+
 
 class Movie(Program):
 
@@ -34,6 +40,12 @@ class Movie(Program):
     def duration(self):
         return self.__duration
 
+    def __str__(self):
+        return f"{self._name} - {self.year} - {self.__duration}- {self.likes} Likes"
+
+    def __repr__(self):
+        return f"Program(_name='{self._name}', year='{self.year}', likes='{self.likes}', duration='{self.duration}')"
+
 
 class Series(Program):
     def __init__(self, seasons, name, year):
@@ -44,9 +56,36 @@ class Series(Program):
     def seasons(self):
         return self.__seasons
 
+    def __str__(self):
+        return f"{self._name} - {self.year} - {self.__seasons}- {self.likes} Likes"
+
+    def __repr__(self):
+        return f"Program(_name='{self._name}', year='{self.year}', likes='{self.likes}', __seasons='{self.__seasons}')"
+
+
+class Playlist:
+    def __init__(self, name, programs):
+        self.name = name
+        self._programs = programs
+
+    @property
+    def list(self):
+        return self._programs
+
+    @property
+    def length(self):
+        return len(self._programs)
+
 
 avengers = Movie(name="avengers teste", year=2018, duration=160)
-print(f'Nome: {avengers.name} - Year: {avengers.year} - Duration: {avengers.duration}, - Likes: {avengers.likes}')
-
 atlanta = Series(name="Atlanta", year=2018, seasons=2)
-print(f'Nome: {atlanta.name} - Year: {atlanta.year} - Seasons: {atlanta.seasons} - Likes: {atlanta.likes}')
+everyone = Movie(name="everyone", year=199, duration=100)
+demolich = Series(name="demolich", year=2016, seasons=3)
+
+movies_and_series = [avengers, atlanta, demolich, everyone]
+
+playlist = Playlist(name="programs2021", programs=movies_and_series)
+
+for program in playlist.list:
+    print(program)
+
